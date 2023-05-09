@@ -1,4 +1,4 @@
-import {RouterProvider, createBrowserRouter} from "react-router-dom"
+import {Navigate, RouterProvider, createBrowserRouter} from "react-router-dom"
 import { MainLayout } from "../components/mainLayout"
 import { Home } from "../pages/home"
 import { DetailProduct } from "../pages/detailProduct"
@@ -10,6 +10,10 @@ export function Routes(){
       path: "",
       element: <MainLayout />,
       children: [
+        {
+          path: '',
+          element: <Navigate to="/home" replace={true} />
+        },
         {
           path: "home",
           element: <Home />
