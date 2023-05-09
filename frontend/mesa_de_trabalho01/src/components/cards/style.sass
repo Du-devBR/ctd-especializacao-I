@@ -1,0 +1,40 @@
+.container-card
+  display: flex
+  max-width: 421px
+  height: 100%
+  gap: 12px
+  padding: 16px
+  border: solid 1px #C3C3C3
+  border-radius: 8px
+  cursor: pointer
+  transition: 0.6s
+
+  img
+    max-width: 169px
+    max-height: 151px
+
+  .info-product
+    display: flex
+    flex-direction: column
+    gap: 8px
+
+    .description-product
+      font-size: 14px
+      color: #2e2e2e
+      font-weight: 500
+
+    .category-product
+      font-size: 12px
+      color: #f3bd30
+      font-weight: 500
+      text-transform: uppercase
+
+    .price-product
+      font-size: 24px
+      font-weight: 700
+      color: #2e2e2e
+
+.container-card:hover
+  // transform: scale(1.02)
+  box-shadow: 0px 5px 10px 0px  #c2c2c2
+  transition: 0.6s
