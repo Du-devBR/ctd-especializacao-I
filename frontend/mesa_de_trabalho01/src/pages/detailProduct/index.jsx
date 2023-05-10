@@ -10,19 +10,30 @@ export function DetailProduct(){
   const {id} = useParams()
   const [product, setProduct] = useState({})
   const [productsCard, setProductsCard] = useState([])
+  const [listCard, setListCard] = useState([])
 
   useEffect(() => {
     getProductById()
     getAllProduct()
   }, [id])
 
+  //Utilizado esse useEffect para pegar os produtos que foram salvas na na função getAllProducts
+  //Atualiza quando os state do productsCards e atualizado.
+  useEffect(() => {
+    const filteredProducts = productsCard.filter((productCard) => productCard.id !== product.id);
+    setListCard(filteredProducts)
+  }, [productsCard])
+
+  // Aqui lista todos os produtos para a parte de ver mais produtos
+
   async function getAllProduct(){
     const response = await axios.get(
       `https://dummyjson.com/products`
     )
-
     setProductsCard(response.data.products)
   }
+
+  // Aqui a api busca por id
 
   async function getProductById(){
     const response = await axios.get(
@@ -31,6 +42,7 @@ export function DetailProduct(){
 
     setProduct(response.data)
   }
+  
   return(
     <div className="container-detail">
       <section className='section-main-product'>
@@ -42,7 +54,7 @@ export function DetailProduct(){
         <h2>Veja outros produtos</h2>
         <div className="container-section-cards">
           {
-            productsCard.slice(0, 4).map((productCard) => (
+            listCard.slice(0, 4).map((productCard) => (
               <Card
                 key={productCard.id}
                 data={productCard}
