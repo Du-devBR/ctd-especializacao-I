@@ -1,16 +1,16 @@
 import React from 'react';
 import './style.sass'
 import { Forms } from '../../components/Forms';
-import { Task } from '../../components/Task';
+import { Tasks } from '../../components/Tasks';
 
 export function Home(){
   return (
     <div className='container'>
-      <section className='container-forms'>
+      <section className='container-section-forms'>
         <Forms />
       </section>
-      <section className='container-tasks'>
-        <Task />
+      <section className='container-section-tasks'>
+        <Tasks />
       </section>
     </div>
   );
