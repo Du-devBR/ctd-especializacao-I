@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.sass'
 import { Forms } from '../../components/Forms';
-import { Tasks } from '../../components/Tasks';
+import  Tasks  from '../../components/Tasks';
 
 export function Home(){
   return (
