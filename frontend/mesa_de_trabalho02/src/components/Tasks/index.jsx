@@ -1,17 +1,16 @@
 // import React, { useEffect, useState } from 'react';
 import './style.sass'
 import { CardTask } from '../CardTask';
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { getListTasks } from '../../services/crud';
-
 import RotateLoader from 'react-spinners/RotateLoader'
+import { todo } from '../../hooks/useTodo';
 
 export default function Tasks(){
-  const queryClient = useQueryClient()
 
-  const { data, isFetching, error } = useQuery(["@todos"], getListTasks, {
-    refetchOnWindowFocus: false,
-  });
+  // const { data, isFetching, error } = useQuery(["@todos"], getListTasks, {
+  //   refetchOnWindowFocus: false,
+  // });
+
+  const {todos, isFetching, error} = todo()
 
   if(isFetching){
     return(
@@ -25,18 +24,16 @@ export default function Tasks(){
 
   if(error){
     return(
-      <h3>Erro ao buscar os dados!!!</h3>
+      <h3>Erro ao buscar as tarefas!!!</h3>
     )
   }
-
-  console.log(data)
 
   return (
     <div className='container-tasks'>
       <h1>Minhas Tarefas</h1>
       <div className="list-tasks">
         {
-          data.map((task) => (
+          todos.map((task) => (
             <CardTask
               key={task._id}
               data={task}
