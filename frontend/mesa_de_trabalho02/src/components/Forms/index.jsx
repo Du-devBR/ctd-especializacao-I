@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './styles.sass'
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { addNewTask } from '../../services/crud';
+import { todo } from '../../hooks/useTodo';
 
 export function Forms(){
+  const {saveTask} = todo()
 
   const [title, setTitle] = useState("")
   const [date, setDate] = useState("")
+  const [description, setDescription] = useState("")
 
   return (
     <form className='form'>
@@ -38,9 +39,20 @@ export function Forms(){
       </div>
       <div className="input-description">
         <label htmlFor="">Decrição</label>
-        <input type="text" />
+        <input
+          type="text"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
       </div>
-      <button className='btn-submit-task'>Salvar</button>
+      <button
+        className='btn-submit-task'
+        onClick={() => {
+          saveTask({title, date, description})
+        }}
+        >
+          Salvar
+      </button>
     </form>
   );
 };

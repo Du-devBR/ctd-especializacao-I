@@ -12,15 +12,16 @@ export async function getListTasks(){
 
 /**
  * Função para adicionar nova tarefa
- * @param {{title:string, date: Date}} todo
+ * @param {{title:string, date: Date, description:string}} todo
  */
-export async function addNewTask(todo){
+export async function saveNewTask(todo){
   return (await api.post("/todo", todo)).data
 }
 
 /**
  * Função para editar uma  tarefa
- * @param {{title:string, date: Date}} todo
+ * @param {{title:string, date: Date, description:string}} todo
+ * @param {number} id
  */
 export async function editTask(todo){
   return (await api.post(`/todo/${todo.id}`, todo)).data

@@ -6,10 +6,6 @@ import { todo } from '../../hooks/useTodo';
 
 export default function Tasks(){
 
-  // const { data, isFetching, error } = useQuery(["@todos"], getListTasks, {
-  //   refetchOnWindowFocus: false,
-  // });
-
   const {todos, isFetching, error} = todo()
 
   if(isFetching){

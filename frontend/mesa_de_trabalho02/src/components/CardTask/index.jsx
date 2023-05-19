@@ -12,7 +12,7 @@ export function CardTask(props){
         <div className='info-task'>
           <h2>{props.data.title}</h2>
           <h3>Categoria</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti, quae.</p>
+          <p>{props.data.description}</p>
         </div>
         <div className="crud-task">
           <span>{formattedDate(props.data.date)}</span>
