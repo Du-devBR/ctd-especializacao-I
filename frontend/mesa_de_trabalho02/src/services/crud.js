@@ -24,7 +24,7 @@ export async function saveNewTask(todo) {
  * @param {number} id
  */
 export async function editTask(todo) {
-  return (await api.post(`/todo/${todo.id}`, todo)).data
+  return (await api.put(`/todo/${todo.id}`, todo.payload)).data
 }
 
 /**

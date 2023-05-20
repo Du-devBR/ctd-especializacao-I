@@ -17,7 +17,7 @@ export function CardTask(props){
         <div className="crud-task">
           <span>{formattedDate(props.data.date)}</span>
           <div className="icons">
-            <span >
+            <span onClick={() => props.onEdit(props.data)}>
               <FiEdit style={{color: "0FBA3F", width: "24px", height: "24px"}} />
             </span>
             <span onClick={() => props.onDelete(props.data._id)}>

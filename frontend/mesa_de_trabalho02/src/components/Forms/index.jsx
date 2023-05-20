@@ -1,13 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './styles.sass'
 import { todo } from '../../hooks/useTodo';
+import SelectedTaskContext from '../../contexts/editTaskContext';
+import { formatDate } from '../../services/formatDate';
 
 export function Forms(){
-  const {saveTask} = todo()
+  const {saveTask, editTaskId} = todo()
 
   const [title, setTitle] = useState("")
   const [date, setDate] = useState("")
   const [description, setDescription] = useState("")
+  const [id, setId] = useState(null)
+
+  const {selectedTask} = useContext(SelectedTaskContext)
+
+  useEffect(() => {
+    if(selectedTask){
+      const dateFormated = selectedTask.date.split("T")[0]
+      setId(selectedTask._id)
+      setTitle(selectedTask.title)
+      setDate(dateFormated)
+      setDescription(selectedTask.description)
+    }
+  }, [selectedTask])
+
+
+  function clearFields(){
+    setTitle("")
+      setDate("")
+      setDescription("")
+  }
 
   return (
     <div className='form'>
@@ -48,7 +70,13 @@ export function Forms(){
       <button
         className='btn-submit-task'
         onClick={() => {
-          saveTask({title, date, description})
+          if(id){
+            editTaskId({ payload: {title, date, description}, id: id})
+            setId(null)
+          }else{
+            saveTask({title, date, description})
+          }
+          clearFields()
         }}
         >
           Salvar

@@ -3,10 +3,13 @@ import './style.sass'
 import { CardTask } from '../CardTask';
 import RotateLoader from 'react-spinners/RotateLoader'
 import { todo } from '../../hooks/useTodo';
+import { useContext } from 'react';
+import SelectedTaskContext from '../../contexts/editTaskContext';
 
 export default function Tasks(){
 
   const {todos, isFetching, error, deleteTaskId} = todo()
+  const {setTaskToEdit} = useContext(SelectedTaskContext)
 
   if(isFetching){
     return(
@@ -33,6 +36,7 @@ export default function Tasks(){
             <CardTask
               key={task._id}
               data={task}
+              onEdit={() => setTaskToEdit(task)}
               onDelete={() => deleteTaskId(task._id)}
             />
           ))
