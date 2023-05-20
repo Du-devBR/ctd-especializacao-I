@@ -6,7 +6,7 @@ import { todo } from '../../hooks/useTodo';
 
 export default function Tasks(){
 
-  const {todos, isFetching, error} = todo()
+  const {todos, isFetching, error, deleteTaskId} = todo()
 
   if(isFetching){
     return(
@@ -33,6 +33,7 @@ export default function Tasks(){
             <CardTask
               key={task._id}
               data={task}
+              onDelete={() => deleteTaskId(task._id)}
             />
           ))
         }

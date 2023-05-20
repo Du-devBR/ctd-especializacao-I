@@ -10,7 +10,7 @@ export function Forms(){
   const [description, setDescription] = useState("")
 
   return (
-    <form className='form'>
+    <div className='form'>
       <h1>Cadastar Tarefa</h1>
       <div className="input-title">
         <label htmlFor="">Titulo</label>
@@ -53,6 +53,6 @@ export function Forms(){
         >
           Salvar
       </button>
-    </form>
+    </div>
   );
 };

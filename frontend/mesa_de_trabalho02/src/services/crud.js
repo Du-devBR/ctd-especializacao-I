@@ -6,7 +6,7 @@ import api from "./api"
  * @returns {Promise<{id:number, title:string, date:Date}>}
  */
 
-export async function getListTasks(){
+export async function getListTasks() {
   return (await api.get("/todo")).data
 }
 
@@ -14,7 +14,7 @@ export async function getListTasks(){
  * Função para adicionar nova tarefa
  * @param {{title:string, date: Date, description:string}} todo
  */
-export async function saveNewTask(todo){
+export async function saveNewTask(todo) {
   return (await api.post("/todo", todo)).data
 }
 
@@ -23,6 +23,14 @@ export async function saveNewTask(todo){
  * @param {{title:string, date: Date, description:string}} todo
  * @param {number} id
  */
-export async function editTask(todo){
+export async function editTask(todo) {
   return (await api.post(`/todo/${todo.id}`, todo)).data
+}
+
+/**
+ * Função para deletar tarefa
+ * @param {id} id
+ */
+export async function deleteTask(id) {
+  return (await api.delete(`/todo/${id}`))
 }

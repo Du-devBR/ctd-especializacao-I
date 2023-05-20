@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient,  } from "@tanstack/react-query";
-import { getListTasks, saveNewTask } from "../services/crud";
+import { deleteTask, getListTasks, saveNewTask } from "../services/crud";
 
 export function todo(){
 
@@ -11,7 +11,12 @@ export function todo(){
 
   const saveNewTaskTodo = useMutation(saveNewTask, {
     onSuccess: () => queryClient.invalidateQueries(["@tasks"]),
-    onerror: () => alert("")
+    onerror: () => alert("Erro ao cadatrar tarefa")
+  })
+
+  const deleteTaskById = useMutation(deleteTask, {
+    onSuccess: () => queryClient.invalidateQueries(["@tasks"]),
+    onerror: () => alert("Erro ao deletar tarefa")
   })
 
   return{
@@ -19,6 +24,7 @@ export function todo(){
     isFetching,
     error,
     saveTask: saveNewTaskTodo.mutate,
+    deleteTaskId: deleteTaskById.mutate,
   }
 
 }

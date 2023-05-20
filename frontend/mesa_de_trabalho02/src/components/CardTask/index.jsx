@@ -17,8 +17,12 @@ export function CardTask(props){
         <div className="crud-task">
           <span>{formattedDate(props.data.date)}</span>
           <div className="icons">
-            <span><FiEdit style={{color: "0FBA3F", width: "24px", height: "24px"}} /></span>
-            <span><FiTrash2 style={{color: "F90000", width: "24px", height: "24px"}} /></span>
+            <span >
+              <FiEdit style={{color: "0FBA3F", width: "24px", height: "24px"}} />
+            </span>
+            <span onClick={() => props.onDelete(props.data._id)}>
+              <FiTrash2 style={{color: "F90000", width: "24px", height: "24px"}} />
+            </span>
           </div>
         </div>
       </div>
