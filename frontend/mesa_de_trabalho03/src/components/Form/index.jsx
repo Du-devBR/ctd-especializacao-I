@@ -1,23 +1,12 @@
 import React, { useState } from 'react';
 import './style.sass';
-import { ApiData } from '../../hooks/useApiData';
+import { ApiData, ApiDataAluno } from '../../hooks/useApiData';
 
 export function Form(props){
 
   const {formData, setFormData} = props
   const {cursosData, isFetching, error} = ApiData()
-
-  function submitNewRegister(){
-    const dados =  {
-      nome: formData.name,
-      matricula: formData.register,
-      curso: formData.course,
-      bimestre: formData.bimester
-
-    }
-
-    console.log(dados)
-  }
+  const {alunoData, save, edit} = ApiDataAluno()
 
   if(isFetching){
     <h3>....carregando</h3>
@@ -32,18 +21,18 @@ export function Form(props){
       <h1>Diario eletrônico</h1>
       <div className="form">
         <input
-          value={formData.name}
-          onChange={(event) => setFormData({...formData, name: event.target.value})}
+          value={formData.nome}
+          onChange={(event) => setFormData({...formData, nome: event.target.value})}
           type="text"
           placeholder='Nome'
         />
         <input
-          value={formData.register}
-          onChange={(event) => setFormData({...formData, register: event.target.value})}
+          value={formData.matricula}
+          onChange={(event) => setFormData({...formData, matricula: event.target.value})}
           type="text"
           placeholder='Nome'
         />
-        <select name="" id="" onChange={(event) => setFormData({...formData, course: event.target.value})}>
+        <select name="" id="" onChange={(event) => setFormData({...formData, curso: event.target.value})}>
           {
             cursosData?.cursos.map((curso) => (
               <option
@@ -56,17 +45,27 @@ export function Form(props){
           }
         </select>
         <input
-          value={formData.bimester}
-          onChange={(event) => setFormData({...formData, bimester: event.target.value})}
+          value={formData.bimestre}
+          onChange={(event) => setFormData({...formData, bimestre: event.target.value})}
           type="text"
           placeholder='Nome'
         />
-        <button
-        onClick={submitNewRegister}
-          type="submit"
-            >
-              Salvar
-        </button>
+        <button onClick={() => formData.id ? edit((
+                  {
+                    id: formData.id,
+                    nome: formData.nome,
+                    matricula: formData.matricula,
+                    curso: formData.curso,
+                    bimestre: formData.bimestre
+                  }
+                )) : save(
+                  {
+                    nome: formData.nome,
+                    matricula: formData.matricula,
+                    curso: formData.curso,
+                    bimestre: formData.bimestre
+                  }
+                )}>salvar</button>
       </div>
     </div>
   );

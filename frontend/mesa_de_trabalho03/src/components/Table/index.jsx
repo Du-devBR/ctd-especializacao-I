@@ -3,9 +3,14 @@ import './style.sass';
 import { ApiDataAluno } from '../../hooks/useApiData';
 import { LineAluno } from '../LineAluno';
 
-export function Table(){
+export function Table(props){
 
-  const {alunoData, isFetching, error} = ApiDataAluno()
+  const {alunoData, isFetching, error, edit} = ApiDataAluno()
+  const {formData, setFormData} = props
+
+  function getFieldsForEdit(aluno){
+    setFormData({...aluno, id: aluno._id})
+  }
 
 
   if(isFetching){
@@ -31,6 +36,7 @@ export function Table(){
                 key={aluno._id}
                 data={aluno}
                 index={index}
+                onEdit={() => getFieldsForEdit(aluno)}
               />
             ))
           }

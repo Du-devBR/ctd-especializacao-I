@@ -1,5 +1,5 @@
-import {useQueryClient, useQuery} from '@tanstack/react-query'
-import { getAlunos, getCourses } from '../service/crud'
+import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query'
+import { editAluno, getAlunos, getCourses, saveAluno } from '../service/crud'
 
 
 export function ApiData(){
@@ -16,13 +16,28 @@ export function ApiData(){
 }
 
 export function ApiDataAluno(){
+
+  const queryClient = useQueryClient()
+
   const {data, isFetching, error} = useQuery(["@aluno"], getAlunos, {
     refetchOnWindowFocus: false
+  })
+
+  const saveNewAluno = useMutation(saveAluno, {
+    onSuccess: () => queryClient.invalidateQueries(["@aluno"]),
+    onError: () => alert("Erro ao salvar tarefa")
+  })
+
+  const editAlunoById = useMutation(editAluno, {
+    onSuccess: () => queryClient.invalidateQueries(["@aluno"]),
+    onError: () => alert("Erro ao editar tarefa")
   })
 
   return{
     alunoData: data,
     isFetching,
     error,
+    save: saveNewAluno.mutate,
+    edit: editAlunoById.mutate
   }
 }

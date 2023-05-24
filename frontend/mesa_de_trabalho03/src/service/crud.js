@@ -15,3 +15,21 @@ export async function getCourses(){
 export async function getAlunos(){
   return (await api.get("/aluno")).data
 }
+
+/**
+ *
+ * @param {{nome:string, matricula:string, curso:string, bimestre:string}} aluno
+ */
+
+export async function saveAluno(aluno){
+  return (await api.post("/aluno", aluno)).data
+}
+
+/**
+ *
+ * @param {{nome:string, matricula:string, curso:string, bimestre:string}} aluno
+ * @param {number} id
+ */
+export async function editAluno(aluno){
+  return (await api.put(`/aluno/${aluno.id}`, aluno)).data
+}

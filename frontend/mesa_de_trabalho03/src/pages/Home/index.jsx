@@ -6,11 +6,11 @@ import { Table } from '../../components/Table';
 export function Home(){
 
   const [formData, setFormData] = useState({
-    id:"",
-    name:"",
-    register:"",
-    course:"",
-    bimester:""
+    id: "",
+    nome: "",
+    regitro: "",
+    curso: "",
+    bimestre: ""
   })
 
   return (
@@ -19,7 +19,10 @@ export function Home(){
         formData={formData}
         setFormData={setFormData}
       />
-      <Table />
+      <Table
+        formData={formData}
+        setFormData={setFormData}
+      />
     </div>
   );
 };

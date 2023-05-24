@@ -3,7 +3,7 @@ import './style.sass';
 
 export function LineAluno(props){
 
-  const {data, index} = props
+  const {data, index, onEdit} = props
   return (
     <tr>
       <td>{index+1}</td>
@@ -11,7 +11,14 @@ export function LineAluno(props){
       <td>{data.matricula}</td>
       <td>{data.curso}</td>
       <td>{data.bimestre}</td>
-      <td>deletar</td>
+      <td>
+        <button
+          onClick={() => onEdit(data)}
+          >
+            Editar
+        </button>
+        <button>Deletar</button>
+      </td>
     </tr>
   );
 };
