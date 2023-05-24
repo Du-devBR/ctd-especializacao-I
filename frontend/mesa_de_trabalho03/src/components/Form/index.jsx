@@ -19,8 +19,6 @@ export function Form(props){
     console.log(dados)
   }
 
-
-
   if(isFetching){
     <h3>....carregando</h3>
   }
@@ -32,42 +30,44 @@ export function Form(props){
   return (
     <div className='container-form'>
       <h1>Diario eletrônico</h1>
-      <input
-        value={formData.name}
-        onChange={(event) => setFormData({...formData, name: event.target.value})}
-        type="text"
-        placeholder='Nome'
-      />
-      <input
-        value={formData.register}
-        onChange={(event) => setFormData({...formData, register: event.target.value})}
-        type="text"
-        placeholder='Nome'
-      />
-      <select name="" id="" onChange={(event) => setFormData({...formData, course: event.target.value})}>
-        {
-          cursosData?.cursos.map((curso) => (
-            <option
-              key={curso.id}
-              value={curso.name}
-                >
-                  {curso.name}
-            </option>
-          ))
-        }
-      </select>
-      <input
-        value={formData.bimester}
-        onChange={(event) => setFormData({...formData, bimester: event.target.value})}
-        type="text"
-        placeholder='Nome'
-      />
-      <button
-      onClick={submitNewRegister}
-        type="submit"
-          >
-            Salvar
-      </button>
+      <div className="form">
+        <input
+          value={formData.name}
+          onChange={(event) => setFormData({...formData, name: event.target.value})}
+          type="text"
+          placeholder='Nome'
+        />
+        <input
+          value={formData.register}
+          onChange={(event) => setFormData({...formData, register: event.target.value})}
+          type="text"
+          placeholder='Nome'
+        />
+        <select name="" id="" onChange={(event) => setFormData({...formData, course: event.target.value})}>
+          {
+            cursosData?.cursos.map((curso) => (
+              <option
+                key={curso.id}
+                value={curso.name}
+                  >
+                    {curso.name}
+              </option>
+            ))
+          }
+        </select>
+        <input
+          value={formData.bimester}
+          onChange={(event) => setFormData({...formData, bimester: event.target.value})}
+          type="text"
+          placeholder='Nome'
+        />
+        <button
+        onClick={submitNewRegister}
+          type="submit"
+            >
+              Salvar
+        </button>
+      </div>
     </div>
   );
 };

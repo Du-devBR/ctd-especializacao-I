@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.sass';
 import { Form } from '../../components/Form';
+import { Table } from '../../components/Table';
 
 export function Home(){
 
@@ -18,6 +19,7 @@ export function Home(){
         formData={formData}
         setFormData={setFormData}
       />
+      <Table />
     </div>
   );
 };
