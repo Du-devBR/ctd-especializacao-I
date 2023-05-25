@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './style.sass';
 import { ApiData, ApiDataAluno } from '../../hooks/useApiData';
 
 export function Form(props){
@@ -25,24 +24,29 @@ export function Form(props){
       bimestre: "",
     })
   }
-
   return (
-    <div className='container-form'>
-      <h1>Diario eletrônico</h1>
-      <div className="form">
+    <div className=''>
+      <div className="flex justify-between gap-8">
         <input
+          className='w-full pt-3 pb-3 p-4 rounded-md text-lg text-colorInput'
           value={formData.nome}
           onChange={(event) => setFormData({...formData, nome: event.target.value})}
           type="text"
           placeholder='Nome'
         />
         <input
+          className='w-full pt-3 pb-3 p-4 rounded-md text-lg text-colorInput'
           value={formData.matricula}
           onChange={(event) => setFormData({...formData, matricula: event.target.value})}
           type="text"
-          placeholder='Nome'
+          placeholder='Matricula'
         />
-        <select name="" id="" onChange={(event) => setFormData({...formData, curso: event.target.value})}>
+        <select
+          className='w-full pt-3 pb-3 p-4 rounded-md text-lg text-colorInput'
+          name=""
+          id=""
+          onChange={(event) => setFormData({...formData, curso: event.target.value})}>
+            <option value="">Selecione um curso</option>
           {
             cursosData?.cursos.map((curso) => (
               <option
@@ -55,12 +59,14 @@ export function Form(props){
           }
         </select>
         <input
+          className='w-full pt-3 pb-3 p-4 rounded-md text-lg text-colorInput'
           value={formData.bimestre}
           onChange={(event) => setFormData({...formData, bimestre: event.target.value})}
           type="text"
-          placeholder='Nome'
+          placeholder='Bimestre'
         />
         <button
+          className='pt-3 pb-3 p-16 rounded-md text-lg text-colorTxt bg-bgBtn hover:bg-bgBtnHover transition duration-500'
           onClick={
             () =>
               {
@@ -88,7 +94,7 @@ export function Form(props){
                   }
                 }
                 >
-                  salvar
+                  Salvar
           </button>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query'
 import { deleteAluno, editAluno, getAlunos, getCourses, saveAluno } from '../service/crud'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export function ApiData(){
@@ -24,18 +26,27 @@ export function ApiDataAluno(){
   })
 
   const saveNewAluno = useMutation(saveAluno, {
-    onSuccess: () => queryClient.invalidateQueries(["@aluno"]),
-    onError: () => alert("Erro ao salvar tarefa")
+    onSuccess: () => {
+      toast.success("Aluno salvo com sucesso.")
+      queryClient.invalidateQueries(["@aluno"])
+    },
+    onError: () => toast.error("Erro ao salvar tarefa")
   })
 
   const editAlunoById = useMutation(editAluno, {
-    onSuccess: () => queryClient.invalidateQueries(["@aluno"]),
-    onError: () => alert("Erro ao editar tarefa")
+    onSuccess: () => {
+      toast.success("Aluno editado com sucesso.")
+      queryClient.invalidateQueries(["@aluno"])
+    },
+    onError: () => toast.error("Erro ao editar tarefa")
   })
 
   const deleteAluboById = useMutation(deleteAluno, {
-    onSuccess:() => queryClient.invalidateQueries(["@aluno"]),
-    onError:() => alert("Erro ao excluir o aluno")
+    onSuccess:() => {
+      toast.success("Aluno deletado com sucesso.")
+      queryClient.invalidateQueries(["@aluno"])
+    },
+    onError:() => toast.error("Erro ao excluir o aluno")
   })
 
   return{
