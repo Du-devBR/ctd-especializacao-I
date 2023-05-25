@@ -17,7 +17,7 @@ export async function getAlunos(){
 }
 
 /**
- *
+ * Função para salvar uma nova tarefa
  * @param {{nome:string, matricula:string, curso:string, bimestre:string}} aluno
  */
 
@@ -26,10 +26,19 @@ export async function saveAluno(aluno){
 }
 
 /**
- *
+ * Função para editar uma tarefa pelo id
  * @param {{nome:string, matricula:string, curso:string, bimestre:string}} aluno
  * @param {number} id
  */
 export async function editAluno(aluno){
   return (await api.put(`/aluno/${aluno.id}`, aluno)).data
+}
+
+/**
+ * Função para deletar uma tarefa pelo id
+ * @param {id} id
+ */
+
+export async function deleteAluno(id){
+  return (await api.delete(`/aluno/${id}`))
 }

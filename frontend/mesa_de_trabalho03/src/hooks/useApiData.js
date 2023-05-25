@@ -1,5 +1,5 @@
 import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query'
-import { editAluno, getAlunos, getCourses, saveAluno } from '../service/crud'
+import { deleteAluno, editAluno, getAlunos, getCourses, saveAluno } from '../service/crud'
 
 
 export function ApiData(){
@@ -33,11 +33,17 @@ export function ApiDataAluno(){
     onError: () => alert("Erro ao editar tarefa")
   })
 
+  const deleteAluboById = useMutation(deleteAluno, {
+    onSuccess:() => queryClient.invalidateQueries(["@aluno"]),
+    onError:() => alert("Erro ao excluir o aluno")
+  })
+
   return{
     alunoData: data,
     isFetching,
     error,
     save: saveNewAluno.mutate,
-    edit: editAlunoById.mutate
+    edit: editAlunoById.mutate,
+    deleteId: deleteAluboById.mutate,
   }
 }

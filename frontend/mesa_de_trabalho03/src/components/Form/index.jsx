@@ -16,6 +16,16 @@ export function Form(props){
     <h3>erro ao processar</h3>
   }
 
+  function clearFields(){
+    setFormData({
+      id: "",
+      nome: "",
+      matricula: "",
+      curso: "",
+      bimestre: "",
+    })
+  }
+
   return (
     <div className='container-form'>
       <h1>Diario eletrônico</h1>
@@ -50,22 +60,36 @@ export function Form(props){
           type="text"
           placeholder='Nome'
         />
-        <button onClick={() => formData.id ? edit((
-                  {
-                    id: formData.id,
-                    nome: formData.nome,
-                    matricula: formData.matricula,
-                    curso: formData.curso,
-                    bimestre: formData.bimestre
+        <button
+          onClick={
+            () =>
+              {
+                if(formData.id){
+                  edit(
+                        {
+                          id: formData.id,
+                          nome: formData.nome,
+                          matricula: formData.matricula,
+                          curso: formData.curso,
+                          bimestre: formData.bimestre
+                        }
+                      )
+                }else{
+                  save(
+                        {
+                          nome: formData.nome,
+                          matricula: formData.matricula,
+                          curso: formData.curso,
+                          bimestre: formData.bimestre
+                        }
+                      )
+                    }
+                    clearFields()
                   }
-                )) : save(
-                  {
-                    nome: formData.nome,
-                    matricula: formData.matricula,
-                    curso: formData.curso,
-                    bimestre: formData.bimestre
-                  }
-                )}>salvar</button>
+                }
+                >
+                  salvar
+          </button>
       </div>
     </div>
   );

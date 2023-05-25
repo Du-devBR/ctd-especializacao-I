@@ -5,7 +5,7 @@ import { LineAluno } from '../LineAluno';
 
 export function Table(props){
 
-  const {alunoData, isFetching, error, edit} = ApiDataAluno()
+  const {alunoData, isFetching, error, edit, deleteId} = ApiDataAluno()
   const {formData, setFormData} = props
 
   function getFieldsForEdit(aluno){
@@ -37,6 +37,7 @@ export function Table(props){
                 data={aluno}
                 index={index}
                 onEdit={() => getFieldsForEdit(aluno)}
+                onDelete={() => deleteId(aluno._id)}
               />
             ))
           }
