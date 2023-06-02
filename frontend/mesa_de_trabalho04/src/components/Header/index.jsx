@@ -7,7 +7,7 @@ export function Header(){
 
   return (
     <div className='flex justify-between w-full bg-primaryColor items-center px-9 py-12 sm:px-24'>
-      <h1 className='font-ubuntu font-normal text-3xl text-white z-10'>DigiWallet</h1>
+      <h1 className='font-ubuntu font-normal text-3xl text-white'>DigiWallet</h1>
       <ul className='hidden gap-4 sm:flex'>
         <li className='font-ubuntu font-normal text-xl text-white'>Home</li>
         <li className='font-ubuntu font-normal text-xl text-white'>Sobre</li>
