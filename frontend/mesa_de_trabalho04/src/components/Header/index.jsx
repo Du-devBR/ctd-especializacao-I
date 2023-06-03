@@ -16,7 +16,7 @@ export function Header(){
         onClick={()=> setToggle(!toogle)}
         src={hamburg}
         alt=""
-        className='sm:hidden cursor-pointer w-6 h-6 z-10'
+        className='sm:hidden cursor-pointer w-6 h-6'
       />
       <ul className={`${toogle ? "flex" : "hidden"} flex-col px-9 py-4 absolute text-end  right-0 gap-2 bg-primaryColor w-full mt-[228px] sidebar`}>
         <li className='font-ubuntu font-normal text-xl text-white'>Home</li>
