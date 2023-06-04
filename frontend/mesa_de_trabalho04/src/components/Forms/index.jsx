@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Forms(){
   return (
-    <div className='flex flex-col gap-5'>
+    <div className='flex flex-col gap-12'>
       <h2 className='text-2xl font-ubuntu text-black '>Preencha os campos abaixos para adicionar um item.</h2>
       <div className='flex flex-col gap-8'>
         <input
