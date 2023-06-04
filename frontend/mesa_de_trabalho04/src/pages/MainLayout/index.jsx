@@ -3,9 +3,18 @@ import { Header } from '../../components/Header';
 import ReactModal from "react-modal";
 import { Forms } from '../../components/Forms';
 import { Cards } from '../../components/Cards';
+import {useQuery} from "@tanstack/react-query"
+import { getWalletData } from '../../assets/db/wallet';
 
 export function MainLayout(){
   const [openModal, setOpenModal] = useState(false)
+
+  const {data, isFetching, error} = useQuery(["wallet"], getWalletData)
+
+  if(isFetching){
+    <h3>....carregando</h3>
+  }
+
   return (
     <div className='w-full'>
       <header>
@@ -24,24 +33,31 @@ export function MainLayout(){
                 >Novo
             </button>
           </div>
-          <Cards />
+          {
+            data?.map((wallet, index) => (
+              <Cards
+                key={index}
+                data ={wallet}
+              />
+            ))
+          }
         </div>
         <ReactModal
-              className='fixed w-full inset-0  items-center justify-center px-9 py-8 sidebar overflow-x-auto'
-              overlayClassName="fixed inset-0 bg-black bg-opacity-50"
-              isOpen={openModal}
-              onRequestClose={!openModal}
-              >
-                <div className='flex flex-col w-full bg-white px-9 py-8 rounded-xl items-center gap-8'>
-                  <button
-                    className='flex bg-primaryColor py-1 px-3 rounded-b-lg  text-white mt-[-32px]'
-                    onClick={() => setOpenModal(false)}
-                      >
-                        X
-                  </button>
-                  <Forms />
-                </div>
-            </ReactModal>
+          className='fixed w-full inset-0  items-center justify-center px-9 py-8 sidebar overflow-x-auto'
+          overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+          isOpen={openModal}
+          onRequestClose={!openModal}
+          >
+            <div className='flex flex-col w-full bg-white px-9 py-8 rounded-xl items-center gap-8'>
+              <button
+                className='flex bg-primaryColor py-1 px-3 rounded-b-lg  text-white mt-[-32px]'
+                onClick={() => setOpenModal(false)}
+                  >
+                    X
+              </button>
+              <Forms />
+            </div>
+        </ReactModal>
       </section>
     </div>
   );
