@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
-import { wallet } from '../../assets/db/wallet';
+import {CrudWallet} from '../../hooks/updateWallet'
 export function Forms(){
   const [title, setTitle] = useState("")
   const [data, setData] = useState("")
   const [price, setPrice] = useState("")
   const [type, setType] = useState("")
   const [description, setDescription] = useState("")
+  const {walletData, isFetching, error, save} = CrudWallet()
 
-  function submitNewWallet(event){
-    event.preventDefault()
-    const newWallet = {
-      title: title,
-      data: data,
-      price: price,
-      type: type,
-      description: description,
-    }
+ 
 
-    wallet(newWallet)
+  if(isFetching){
+    <h3>....carregando</h3>
   }
 
-
+  if(error){
+    <h3>erro ao processar</h3>
+  }
   return (
     <div className='flex flex-col gap-12'>
       <h2 className='text-2xl font-ubuntu text-black '>Preencha os campos abaixos para adicionar um item.</h2>
@@ -62,7 +58,13 @@ export function Forms(){
         </textarea>
         <button
           className='px-2 py-3 bg-primaryColor rounded-lg text-white text-xl w-full hover:bg-bgBtnHover duration-700'
-          onClick={(event)=> submitNewWallet(event)}
+          onClick={() => save({
+            title: title,
+            data: data,
+            price: price,
+            type: type,
+            description: description,
+          })}
           >
             Salvar
         </button>

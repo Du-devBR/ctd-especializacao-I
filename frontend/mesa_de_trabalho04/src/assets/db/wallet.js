@@ -1,7 +1,7 @@
-export const wallet = (newWallet) => {
-  const walletStorage = JSON.parse(localStorage.getItem('wallet')) || []
-  const update = [...walletStorage, newWallet]
-  localStorage.setItem('wallet', JSON.stringify(update))
+export async function wallet(newWallet){
+  const walletStorage = await JSON.parse(localStorage.getItem('wallet')) || []
+  const update = await [...walletStorage, newWallet]
+  return (await localStorage.setItem('wallet', JSON.stringify(update)))
 }
 
 export const getWalletData = () => {
