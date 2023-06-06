@@ -3,13 +3,14 @@ import { Header } from '../../components/Header';
 import ReactModal from "react-modal";
 import { Forms } from '../../components/Forms';
 import { Cards } from '../../components/Cards';
-import {useQuery} from "@tanstack/react-query"
-import { getWalletData } from '../../assets/db/wallet';
+import { CrudWallet } from '../../hooks/updateWallet';
 
 export function MainLayout(){
   const [openModal, setOpenModal] = useState(false)
 
-  const {data, isFetching, error} = useQuery(["wallet"], getWalletData)
+  // const {data, isFetching, error} = useQuery(["wallet"], getWalletData)
+
+  const {walletData, isFetching, error} = CrudWallet()
 
   if(isFetching){
     <h3>....carregando</h3>
@@ -34,7 +35,7 @@ export function MainLayout(){
             </button>
           </div>
           {
-            data?.map((wallet, index) => (
+            walletData?.map((wallet, index) => (
               <Cards
                 key={index}
                 data ={wallet}

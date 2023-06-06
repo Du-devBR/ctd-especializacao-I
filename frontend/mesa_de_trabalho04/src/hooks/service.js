@@ -10,3 +10,15 @@ export function submitNewWallet(event){
 
   wallet(newWallet)
 }
+
+// export function clearFields(){
+//   const wallet = {
+//     title: '',
+//     data: '',
+//     price: '',
+//     type: '',
+//     description: '',
+//   }
+
+//   return wallet
+// }
