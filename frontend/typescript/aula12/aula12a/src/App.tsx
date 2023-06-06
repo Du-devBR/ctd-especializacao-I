@@ -1,10 +1,16 @@
-import { Card } from "./components"
+import { Card } from "./components/card"
+import { frutas } from "./assets/db/db"
 
-function App() {
+export function App() {
 
   return (
-    <Card nome="Eduardo" idade={30} />
+    <div>
+      <h1>Frutas</h1>
+      {
+        frutas.map((frutas) => (
+          <Card fruit={frutas}/>
+        ))
+      }
+    </div>
   )
 }
-
-export default App
