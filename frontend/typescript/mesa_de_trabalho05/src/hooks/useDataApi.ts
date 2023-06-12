@@ -1,5 +1,6 @@
 import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query';
-import { getAllProducts } from '../services/fethUsers';
+import { getAllProducts, getProductById } from '../services/fethUsers';
+import { ResponseProducts } from '../pages/products/type';
 
 export function ApiDataProducts(){
   const {data, isFetching, error} = useQuery(["@products"], getAllProducts, {
@@ -12,4 +13,16 @@ export function ApiDataProducts(){
     isFetching,
     error,
   }
+
+}
+
+export function ApiDataProductId(_id: string){
+  const {data, isFetching, error} = useQuery<ResponseProducts>(
+    ["@products", _id], () => getProductById(_id))
+
+    return {
+      productData: data,
+      isFetching,
+      error,
+    }
 }

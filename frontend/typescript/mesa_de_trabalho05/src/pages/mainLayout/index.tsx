@@ -5,7 +5,7 @@ export function MainLayout(){
   return (
     <div>
       <Header />
-      <section className="w-full py-11 px-12">
+      <section className="w-full flex py-11 px-12">
         <Outlet />
       </section>
     </div>

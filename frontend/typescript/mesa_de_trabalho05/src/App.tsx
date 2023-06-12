@@ -14,7 +14,7 @@ export function App() {
         <Route path='/login' element={<Login />}/>
         <Route path='/' element={<MainLayout />}>
           <Route path='/produtos' element={<Products />}/>
-          <Route path='/produto/:id' element={<DetailProduct />}/>
+          <Route path='/produto/:_id' element={<DetailProduct />}/>
         </Route>
         <Route path='/sobre' element={<About />}/>
         <Route path='/notfound' element={<NotFound />} />
