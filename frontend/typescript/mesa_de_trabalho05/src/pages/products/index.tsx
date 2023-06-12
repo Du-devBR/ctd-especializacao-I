@@ -2,14 +2,13 @@
 import { useNavigate } from "react-router-dom";
 import { Card } from "../../components/card";
 import { ApiDataProducts } from "../../hooks/useDataApi";
-import ReactModal from 'react-modal';
-import { useState } from "react";
+import { ModalRegister } from "../../components/modal/registerProduct";
+import { UseModal } from "../../hooks/useModal";
 
 export function Products(){
 
   const {productsData, isFetching, error} = ApiDataProducts()
-
-  const [openModal, setOpenModal] = useState(false)
+  const {openModal, closedModal} = UseModal()
   const navigate = useNavigate()
 
   if(error){
@@ -21,20 +20,15 @@ export function Products(){
     navigate(`/produto/${_id}`);
   };
 
-  function teste(){
-    setOpenModal(true)
-  }
 
   return(
     <div>
-      <ReactModal isOpen={openModal}>
-        <h1>ddd</h1>
-      </ReactModal>
+      <ModalRegister isOpen={openModal} close={closedModal}/>
       <h2 className="flex text-xl text-txtBlackColor2 font-bold mb-4">Produtos</h2>
       {isFetching ? (
         <h3>...carregando</h3>
       ) : (
-        <div className="flex gap-8 max-w-fit relative">
+        <div className="grid grid-cols-4 gap-4 relative">
           {productsData?.map((product) => (
             <Card
               key={product._id}
@@ -47,8 +41,8 @@ export function Products(){
             />
           ))}
           <button
-            onClick={teste}
-            className="flex text-3xl font-bold rounded-[100%] bg-primaryColor w-[80px] h-[80px] items-center justify-center absolute bottom-[-40px] right-[-40px]"
+            onClick={closedModal}
+            className="flex text-3xl font-bold rounded-[100%] bg-primaryColor w-[80px] h-[80px] items-center justify-center self-end mb-[-40px] ml-[-40px]"
               >
                 +
           </button>

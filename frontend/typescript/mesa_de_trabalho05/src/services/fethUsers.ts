@@ -1,4 +1,4 @@
-import { ResponseProducts } from "../pages/products/type";
+import { ResponseProducts, SendProducts } from "../pages/products/type";
 import { api } from "./api";
 
 export const  getAllProducts = async () =>{
@@ -8,5 +8,12 @@ export const  getAllProducts = async () =>{
 
 export const getProductById = async (_id: string): Promise<ResponseProducts> => {
   const response = await api.get<ResponseProducts>(`/product/${_id}`);
+  return response.data
+}
+
+export const saveProduct = async (product: SendProducts) => {
+  const response = await api.post<SendProducts>("/products", product);
+  console.log(product);
+
   return response.data
 }

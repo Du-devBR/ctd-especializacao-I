@@ -3,7 +3,7 @@ import { ResponseProducts } from "../../pages/products/type";
 export function Card({title, company, price, urlImg, onClick}:ResponseProducts){
   return(
     <div
-      className="flex cursor-pointer flex-col justify-between shadow-md shadow-gray-300 max-w-xs gap-4 px-4 py-4 rounded-xl"
+      className="flex cursor-pointer flex-col justify-between shadow-md shadow-gray-300 gap-4 px-4 py-4 rounded-xl"
       onClick={onClick}
         >
       <h3 className="text-base font-semibold text-black">{title}</h3>
