@@ -1,5 +1,5 @@
 import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query';
-import { getAllProducts, getProductById, saveProduct } from '../services/fethUsers';
+import { deleteProductId, getAllProducts, getProductById, saveProduct } from '../services/fethUsers';
 import { ResponseProducts } from '../pages/products/type';
 
 export function ApiDataProducts(){
@@ -26,12 +26,25 @@ export function ApiDataProducts(){
 }
 
 export function ApiDataProductId(_id: string){
+  const queryClient = useQueryClient()
+
   const {data, isFetching, error} = useQuery<ResponseProducts>(
-    ["@products", _id], () => getProductById(_id))
+    ["@products", _id], () => getProductById(_id)
+  )
+
+  const deleteProduct = useMutation<ResponseProducts>(() => deleteProductId(_id), {
+    onSuccess: ()=> {
+      queryClient.invalidateQueries(["@products"])
+    },
+    onError: ()=> alert("erro")
+  })
 
     return {
       productData: data,
       isFetching,
       error,
+      deleteId: deleteProduct.mutate,
+
     }
 }
+

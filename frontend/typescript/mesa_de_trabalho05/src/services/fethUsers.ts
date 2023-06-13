@@ -13,7 +13,10 @@ export const getProductById = async (_id: string): Promise<ResponseProducts> => 
 
 export const saveProduct = async (product: SendProducts) => {
   const response = await api.post<SendProducts>("/products", product);
-  console.log(product);
+  return response.data
+}
 
+export const deleteProductId = async (_id: string): Promise<ResponseProducts> => {
+  const response = await api.delete<ResponseProducts>(`/product/${_id}`)
   return response.data
 }
