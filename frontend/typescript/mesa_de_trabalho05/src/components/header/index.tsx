@@ -9,7 +9,7 @@ export function Header(){
           <Link to={"/produtos"}>Produtos</Link>
           <Link to={"/sobre"}>Quem somos</Link>
         </ul>
-        <button className="text-txtBlackColor text-xl cursor-pointer hover:rounded-xl hover:bg-white duration-700 px-6 py-1">Sair</button>
+        <Link to={'/login'} className="text-txtBlackColor text-xl cursor-pointer hover:rounded-xl hover:bg-white duration-700 px-6 py-1">Sair</Link>
       </div>
     </header>
   )

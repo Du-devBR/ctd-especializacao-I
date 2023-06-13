@@ -1,5 +1,5 @@
 export type ResponseProducts = {
-  _id: string;
+  _id?: string;
   title: string;
   company: string;
   price: string;

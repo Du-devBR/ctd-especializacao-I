@@ -23,7 +23,7 @@ export function Products(){
 
   return(
     <div>
-      <ModalRegister isOpen={openModal} close={closedModal}/>
+      <ModalRegister isOpen={openModal} close={closedModal} isOpenUpdate/>
       <h2 className="flex text-xl text-txtBlackColor2 font-bold mb-4">Produtos</h2>
       {isFetching ? (
         <h3>...carregando</h3>

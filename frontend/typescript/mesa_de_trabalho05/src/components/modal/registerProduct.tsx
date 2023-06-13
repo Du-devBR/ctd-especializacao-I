@@ -4,7 +4,7 @@ import { ModalType } from "./type";
 import {SendProducts } from '../../pages/products/type';
 import { ApiDataProducts } from '../../hooks/useDataApi';
 
-export function ModalRegister({isOpen, close}:ModalType){
+export function ModalRegister({isOpen, isOpenUpdate, close}:ModalType){
 
   const {save} = ApiDataProducts()
 

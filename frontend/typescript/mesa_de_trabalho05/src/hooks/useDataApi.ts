@@ -1,5 +1,5 @@
 import {useQueryClient, useQuery, useMutation} from '@tanstack/react-query';
-import { deleteProductId, getAllProducts, getProductById, saveProduct } from '../services/fethUsers';
+import { deleteProductId, getAllProducts, getProductById, saveProduct, updateProductId } from '../services/fethUsers';
 import { ResponseProducts } from '../pages/products/type';
 
 export function ApiDataProducts(){
@@ -16,11 +16,19 @@ export function ApiDataProducts(){
     onError: ()=> alert("erro")
   })
 
+  const updateProduct = useMutation(updateProductId, {
+    onSuccess: ()=> {
+      queryClient.invalidateQueries(["@products"])
+    },
+    onError: ()=> alert("erro")
+  })
+
   return {
     productsData: data,
     isFetching,
     error,
     save: saveNewProduct.mutate,
+    update: updateProduct.mutate,
   }
 
 }
@@ -47,4 +55,3 @@ export function ApiDataProductId(_id: string){
 
     }
 }
-

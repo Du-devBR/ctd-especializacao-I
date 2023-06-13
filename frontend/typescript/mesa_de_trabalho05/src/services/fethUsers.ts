@@ -20,3 +20,9 @@ export const deleteProductId = async (_id: string): Promise<ResponseProducts> =>
   const response = await api.delete<ResponseProducts>(`/product/${_id}`)
   return response.data
 }
+
+
+export const updateProductId = async (product: ResponseProducts) => {
+  const response = await api.put<ResponseProducts>(`/product/${product._id}`, product)
+  return response.data;
+}
