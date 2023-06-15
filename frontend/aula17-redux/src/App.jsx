@@ -49,6 +49,11 @@ export function App() {
                   JSON.stringify(product)
                 }
                 <button
+                  onClick={() => dispatch({type: 'EDIT_PRODUCT', payload: {product: formData}})}
+                  >
+                    Editar
+                </button>
+                <button
                   onClick={() => dispatch({type: "REMOVE_PRODUCT", payload: product.id})}
                   >
                     Remover

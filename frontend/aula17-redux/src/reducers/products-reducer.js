@@ -23,6 +23,24 @@ export default function ProductsReducer(state = State, action){
     return {...copyState}
   }
 
+  if (action.type === "EDIT_PRODUCT") {
+    const { productId, updatedProduct } = action.payload;
+    const copyState = { ...state };
+    const productIndex = copyState.products.findIndex(
+      (product) => product.id === productId
+    );
+
+    if (productIndex !== -1) {
+      copyState.products[productIndex] = {
+        ...copyState.products[productIndex],
+        ...updatedProduct
+      };
+    }
+
+    return { ...copyState };
+
+  }
+
   return state;
 
 
