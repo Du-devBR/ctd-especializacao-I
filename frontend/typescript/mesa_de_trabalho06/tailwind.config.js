@@ -11,6 +11,7 @@ theme: {
     },
     colors: {
       bgBlue: '#102766',
+      bgBtn: '#E84118',
       // danger: "#FF6B6B",
       // sucess: "#1DD170",
       // primaryColor: "#F9CA24",
