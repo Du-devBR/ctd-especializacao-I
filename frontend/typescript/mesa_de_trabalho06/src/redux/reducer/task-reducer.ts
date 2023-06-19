@@ -10,10 +10,10 @@ const State: InitialState = {
 export default function TasksReducer(state = State, action: Action){
   switch (action.type){
     case "SAVE":
-      const t :  DateTask =  {...action.payload, id: taskIdCounter++}
+      const newTask :  DateTask =  {...action.payload, id: taskIdCounter++}
       return {
         ...state,
-        dateTask: [...state.dateTask, t ]
+        dateTask: [...state.dateTask, newTask ]
       }
     case "DELETE":
       return {
